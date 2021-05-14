@@ -10,7 +10,7 @@ button.addEventListener("click", function () {
     "GET",
     "http://api.openweathermap.org/data/2.5/weather?q=" +
       inputValue.value +
-      "&appid=d384f81f1bdc231bcfb8532ef31237f0&units=imperial"
+      "API KEY"
   );
   request.onload = function () {
     let response = request.response;
