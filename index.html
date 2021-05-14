@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+
+    <title>Weather Service</title>
+  </head>
+  <body>
+    <div id="container">
+      <div id="main_content">
+        <input id="input" placeholder="Enter a City" type="text" autofocus />
+        <button id="button" type="submit">ENTER</button>
+        <section id="resultsdiv">
+          <h1 class="cityname">
+            <!--city name-->
+          </h1>
+          <p class="temp">
+            <!--temp-->
+          </p>
+
+          <p class="desc">
+            <!--description-->
+          </p>
+        </section>
+      </div>
+    </div>
+    <script>
+      let button = document.querySelector("#button");
+      let inputValue = document.querySelector("#input");
+      let temp = document.querySelector(".temp");
+      let cityname = document.querySelector(".cityname");
+      let desc = document.querySelector(".desc");
+
+      button.addEventListener("click", function () {
+        let request = new XMLHttpRequest();
+        request.open(
+          "GET",
+          "http://api.openweathermap.org/data/2.5/weather?q=" +
+            inputValue.value +
+            "&appid=d384f81f1bdc231bcfb8532ef31237f0&units=imperial"
+        );
+        request.onload = function () {
+          let response = request.response;
+          let parsedData = JSON.parse(response);
+          let nameValue = parsedData["name"];
+          let tempValue = parsedData["main"]["temp"];
+          let descValue = parsedData["weather"][0]["description"];
+          console.log(parsedData);
+          cityname.innerHTML = `${nameValue}`;
+          temp.innerHTML = `Temperature: ${tempValue}`;
+          desc.innerHTML = `Description: ${descValue}`;
+        };
+        request.send();
+      });
+    </script>
+  </body>
+</html>
