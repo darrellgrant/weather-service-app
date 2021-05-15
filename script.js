@@ -9,6 +9,7 @@ function getData(callback) {
     });
 }
 
+<<<<<<< HEAD
 getData(function (myData) {
   console.log(myData);
   let myAppiKey = myData;
@@ -39,4 +40,26 @@ getData(function (myData) {
     };
     request.send();
   });
+=======
+button.addEventListener("click", function () {
+  let request = new XMLHttpRequest();
+  request.open(
+    "GET",
+    "http://api.openweathermap.org/data/2.5/weather?q=" +
+      inputValue.value +
+      "API KEY"
+  );
+  request.onload = function () {
+    let response = request.response;
+    let parsedData = JSON.parse(response);
+    let nameValue = parsedData["name"];
+    let tempValue = parsedData["main"]["temp"];
+    let descValue = parsedData["weather"][0]["description"];
+    console.log(parsedData);
+    cityname.innerHTML = `${nameValue}`;
+    temp.innerHTML = `Temperature: ${tempValue}`;
+    desc.innerHTML = `Description: ${descValue}`;
+  };
+  request.send();
+>>>>>>> 58dc9da58a00245ee692f74c177ed8998a21f6ee
 });
