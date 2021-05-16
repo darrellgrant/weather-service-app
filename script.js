@@ -1,3 +1,4 @@
+//get api key from data.php
 function getData(callback) {
   fetch("data.php")
     .then(function (response) {
@@ -5,14 +6,12 @@ function getData(callback) {
     })
     .then(function (data) {
       callback(data);
-      console.log(data);
     });
 }
 
 getData(function (myData) {
-  console.log(myData);
   let myAppiKey = myData;
-  console.log(myAppiKey);
+
   let button = document.querySelector("#button");
   let inputValue = document.querySelector("#input");
   let temp = document.querySelector(".temp");
@@ -28,11 +27,11 @@ getData(function (myData) {
     request.onload = function () {
       let response = request.response;
       let parsedData = JSON.parse(response);
-      console.log(parsedData);
+
       let nameValue = parsedData["name"];
       let tempValue = parsedData["main"]["temp"];
       let descValue = parsedData["weather"][0]["description"];
-      console.log(parsedData);
+
       cityname.innerHTML = `${nameValue}`;
       temp.innerHTML = `Temperature: ${tempValue}`;
       desc.innerHTML = `Description: ${descValue}`;
