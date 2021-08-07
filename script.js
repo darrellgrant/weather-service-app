@@ -32,9 +32,11 @@ getData(function (myData) {
       let tempValue = parsedData["main"]["temp"];
       let descValue = parsedData["weather"][0]["description"];
 
+      //display city, temp, description
       cityname.innerHTML = `${nameValue}`;
       temp.innerHTML = `Temperature: ${tempValue}`;
       desc.innerHTML = `Description: ${descValue}`;
+      inputValue.value = ""; //clear input
     };
     request.send();
   });
