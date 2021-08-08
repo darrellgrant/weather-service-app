@@ -2,6 +2,7 @@ body {
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 .section {
   position: relative;
@@ -13,11 +14,22 @@ body {
   overflow: hidden;
 }
 
-#container {
+.container {
   position: absolute;
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 1;
+}
+
+.container {
+  font-size: 2rem;
+  color: white;
+}
+
+.cityname {
+  background-color: lightblue;
+  text-align: center;
 }
 
 button {
@@ -26,15 +38,18 @@ button {
   border: none;
   width: 60px;
   height: 60px;
-  display: block;
+  cursor: pointer;
 }
 
 input[type="text"] {
-  display: block;
   margin-bottom: 20px;
+  margin-right: 20px;
   width: 300px;
   height: 50px;
   font-size: 3rem;
   border: none;
   outline: none;
+}
+input#input {
+  display: block;
 }
