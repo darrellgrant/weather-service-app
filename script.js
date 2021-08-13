@@ -8,15 +8,15 @@ function getData(callback) {
       callback(data);
     });
 }
+let temp = document.querySelector(".temp");
+let cityname = document.querySelector(".cityname");
+let desc = document.querySelector(".desc");
 
 getData(function (myData) {
   let myAppiKey = myData;
 
   let button = document.querySelector("#button");
   let inputValue = document.querySelector("#input");
-  let temp = document.querySelector(".temp");
-  let cityname = document.querySelector(".cityname");
-  let desc = document.querySelector(".desc");
 
   button.addEventListener("click", function () {
     let request = new XMLHttpRequest();
@@ -37,7 +37,30 @@ getData(function (myData) {
       temp.innerHTML = `Temperature: ${tempValue}`;
       desc.innerHTML = `Description: ${descValue}`;
       inputValue.value = ""; //clear input
+
+      loadClearBTN();
     };
     request.send();
   });
 });
+
+//set variables outside to use in both functions
+let clearDIV = document.getElementById("clear");
+let clearBTN = document.createElement("button");
+
+function loadClearBTN() {
+  //display clear button
+  clearBTN.append("CLEAR");
+  clearDIV.append(clearBTN);
+  clearBTN.addEventListener("click", clearField);
+}
+
+function clearField() {
+  cityname.innerHTML = "";
+  temp.innerHTML = "";
+  desc.innerHTML = "";
+  //remove text from clear button
+  clearBTN.innerHTML = "";
+  //remove clear button (may not work in IE)
+  clearBTN.remove();
+}
