@@ -11,6 +11,7 @@ function getData(callback) {
 let temp = document.querySelector(".temp");
 let cityname = document.querySelector(".cityname");
 let desc = document.querySelector(".desc");
+let btnText = false;
 
 getData(function (myData) {
   let myAppiKey = myData;
@@ -25,34 +26,60 @@ getData(function (myData) {
       `http://api.openweathermap.org/data/2.5/weather?q=${inputValue.value}&appid=${myAppiKey}&units=imperial`
     );
     request.onload = function () {
-      let response = request.response;
-      let parsedData = JSON.parse(response);
+      if (this.status == 200) {
+        let response = request.response;
+        let parsedData = JSON.parse(response);
 
-      let nameValue = parsedData["name"];
-      let tempValue = parsedData["main"]["temp"];
-      let descValue = parsedData["weather"][0]["description"];
+        let nameValue = parsedData["name"];
+        let tempValue = parsedData["main"]["temp"];
+        let descValue = parsedData["weather"][0]["description"];
 
-      //display city, temp, description
-      cityname.innerHTML = `${nameValue}`;
-      temp.innerHTML = `Temperature: ${tempValue}`;
-      desc.innerHTML = `Description: ${descValue}`;
-      inputValue.value = ""; //clear input
+        //display city, temp, description
+        cityname.innerHTML = `${nameValue}`;
+        temp.innerHTML = `Temperature: ${tempValue}`;
+        desc.innerHTML = `Description: ${descValue}`;
+        inputValue.value = ""; //clear input
 
-      loadClearBTN();
+        loadClearBTN();
+      } else if (this.status == 404) {
+        console.log("An error occured");
+        document.getElementById("input").style.color = "red";
+        //code to clear error
+        document
+          .getElementById("input")
+          .addEventListener("mouseenter", errorClear);
+      } else if (this.status == 400) {
+        document.getElementById("input").style.backgroundColor = "pink";
+        //coder to clear error
+        document
+          .getElementById("input")
+          .addEventListener("mouseenter", errorClear);
+      }
     };
+
     request.send();
   });
 });
+
+//clear error
+function errorClear() {
+  document.getElementById("input").style.color = "black";
+  document.getElementById("input").style.backgroundColor = "white";
+  document.getElementById("input").value = "";
+}
 
 //set variables outside to use in both functions
 let clearDIV = document.getElementById("clear");
 let clearBTN = document.createElement("button");
 
+//display clear button
 function loadClearBTN() {
-  //display clear button
-  clearBTN.append("CLEAR");
-  clearDIV.append(clearBTN);
-  clearBTN.addEventListener("click", clearField);
+  if (!btnText) {
+    clearBTN.append("CLEAR");
+    clearDIV.append(clearBTN);
+    clearBTN.addEventListener("click", clearField);
+    btnText = true;
+  }
 }
 
 function clearField() {
@@ -63,4 +90,5 @@ function clearField() {
   clearBTN.innerHTML = "";
   //remove clear button (may not work in IE)
   clearBTN.remove();
+  btnText = false;
 }
