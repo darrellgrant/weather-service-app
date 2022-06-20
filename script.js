@@ -1,20 +1,11 @@
-//get api key from data.php
-function getData(callback) {
-  fetch("data.php")
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-      callback(data);
-    });
-}
+
 let temp = document.querySelector(".temp");
 let cityname = document.querySelector(".cityname");
 let desc = document.querySelector(".desc");
 let btnText = false;
 
-getData(function (myData) {
-  let myAppiKey = myData;
+
+  let myAppiKey = "d384f81f1bdc231bcfb8532ef31237f0";
 
   let button = document.querySelector("#button");
   let inputValue = document.querySelector("#input");
@@ -59,7 +50,7 @@ getData(function (myData) {
 
     request.send();
   });
-});
+
 
 //clear error
 function errorClear() {
