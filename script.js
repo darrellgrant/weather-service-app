@@ -36,7 +36,7 @@ getData(function (myData) {
 
         //display city, temp, description
         cityname.innerHTML = `${nameValue}`;
-        temp.innerHTML = `Temperature: ${tempValue}`;
+        temp.innerHTML = `Temperature: ${tempValue} <span>&#8457;</span>`;
         desc.innerHTML = `Description: ${descValue}`;
         inputValue.value = ""; //clear input
 
@@ -92,5 +92,3 @@ function clearField() {
   clearBTN.remove();
   btnText = false;
 }
-
-

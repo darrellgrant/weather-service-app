@@ -67,6 +67,12 @@ img {
   display: none;
 }
 
+#quotes-div {
+  width: 600px;
+  height: 100px;
+  background-color: rgba(83, 83, 246, 0.5);
+}
+
 /************media queries****************************/
 @media screen and (max-width: 799px) {
   #img1 {
