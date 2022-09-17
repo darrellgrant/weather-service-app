@@ -1,4 +1,3 @@
-
 const quotes = [
   {
     author: "Carl Reiner",
@@ -51,24 +50,28 @@ const quotes = [
       "We shall never be content until each man makes his own weather and keeps it to himself.",
   },
 ];
+displayNewQuote();
+setInterval(displayNewQuote, 30000);
 
-function getRandomIntInclusive(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1) + min); //The maximum is inclusive and the minimum is inclusive
+function displayNewQuote() {
+  function getRandomIntInclusive(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1) + min); //The maximum is inclusive and the minimum is inclusive
+  }
+
+  function getRandomQuote(arr) {
+    const objOfArray = getRandomIntInclusive(0, 9);
+    return objOfArray;
+  }
+
+  let randomIndex = getRandomQuote(quotes);
+
+  const quotesHTML = document.getElementById("quotes");
+  quotesHTML.innerHTML =
+    "&quot;" +
+    quotes[randomIndex].quote +
+    "&quot; <br> -<b>" +
+    quotes[randomIndex].author +
+    "</b>";
 }
-
-function getRandomQuote(arr) {
-  const objOfArray = getRandomIntInclusive(0, 9);
-  return objOfArray;
-}
-
-let randomIndex = getRandomQuote(quotes);
-
-const quotesHTML = document.getElementById("quotes");
-quotesHTML.innerHTML =
-  "&quot;" +
-  quotes[randomIndex].quote +
-  "&quot; <br> -<b>" +
-  quotes[randomIndex].author +
-  "</b>";
