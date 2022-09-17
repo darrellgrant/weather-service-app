@@ -67,6 +67,17 @@ img {
   display: none;
 }
 
+#quotes-div {
+  width: 600px;
+  margin-top: 10px;
+  padding: 10px;
+  min-height: 100px;
+  /* height: 100px; */
+  background-color: rgba(135, 206, 250, 0.7);
+  color: #333333;
+  text-align: center;
+}
+
 /************media queries****************************/
 @media screen and (max-width: 799px) {
   #img1 {
@@ -74,6 +85,9 @@ img {
   }
   #img2 {
     display: block;
+  }
+  #quotes-div {
+    width: 70%;
   }
 }
 
@@ -83,5 +97,9 @@ img {
   }
   #img3 {
     display: block;
+  }
+
+  #quotes-div {
+    width: 70%;
   }
 }
