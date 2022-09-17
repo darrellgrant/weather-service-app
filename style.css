@@ -86,8 +86,9 @@ img {
   #img2 {
     display: block;
   }
-   #quotes-div {
+  #quotes-div {
     width: 70%;
+  }
 }
 
 @media screen and (max-width: 500px) {
