@@ -51,7 +51,7 @@ const quotes = [
   },
 ];
 displayNewQuote();
-setInterval(displayNewQuote, 30000);
+setInterval(displayNewQuote, 20000);
 
 function displayNewQuote() {
   function getRandomIntInclusive(min, max) {
